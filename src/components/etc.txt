@@ -1,68 +1,51 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
 import styled from "styled-components";
 
-const categories = ["Food", "Utilities", "Entertainment"];
-
-type Inputs = {
-  description: string;
-  amount: number;
-  category: string;
-};
+const categories = ["Food", "Transportation", "Entertainment"];
 
 const ExpenseForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState(categories[0]);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log({ description, amount, category });
+    // handle form submission
+  };
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Label htmlFor="description">Description</Label>
         <Input
           type="text"
           id="description"
-          // value="description"
-          {...register("description", { required: true, minLength: 3 })}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
-        {errors.description?.type === "required" && (
-          <Error>This field is required</Error>
-        )}
-        {errors.description?.type === "minLength" && (
-          <Error>At least 3 chars is required</Error>
-        )}
       </FormGroup>
       <FormGroup>
         <Label htmlFor="amount">Amount</Label>
         <Input
           type="number"
           id="amount"
-          {...register("amount", { required: true })}
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
         />
-        {errors.amount?.type === "required" && (
-          <Error>This field is required</Error>
-        )}
       </FormGroup>
       <FormGroup>
         <Label htmlFor="category">Category</Label>
         <Select
           id="category"
-          {...register("category", {
-            validate: (value) => value !== "none",
-          })}
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
         >
-          <option value="none"> None </option>
-          {categories.map((category, index) => (
-            <option key={index} value={category}>
-              {category}
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
             </option>
           ))}
         </Select>
-        {errors.category?.type === "validate" && (
-          <Error>Please select a category</Error>
-        )}
       </FormGroup>
       <Button type="submit">Add Expense</Button>
     </Form>
@@ -115,16 +98,6 @@ const Select = styled.select`
     box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.2);
     outline: none;
   }
-`;
-const Option = styled.option`
-  appearance: none;
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.375rem;
-  box-shadow: inset 0 1px 2px 0 rgba(27, 40, 176, 0.374);
-`;
-const Error = styled.p`
-  color: #d70b0b;
 `;
 
 const Button = styled.button`
