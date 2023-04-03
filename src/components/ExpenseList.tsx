@@ -1,6 +1,4 @@
-import { useState } from "react";
 import tw from "tailwind-styled-components";
-
 interface Expense {
   id: number;
   description: string;
@@ -9,9 +7,10 @@ interface Expense {
 }
 interface Props {
   expenses: Expense[]; //is an array of objects!
+  onDelete: (id: number) => void;
 }
 
-const ExpenseList = ({ expenses }: Props) => {
+const ExpenseList = ({ expenses, onDelete }: Props) => {
   return (
     <Div>
       <Table>
@@ -30,7 +29,7 @@ const ExpenseList = ({ expenses }: Props) => {
               <TbodyTd>${expense.amount}</TbodyTd>
               <TbodyTd>{expense.category}</TbodyTd>
               <TbodyTd>
-                <Btn>Delete</Btn>
+                <Btn onClick={() => onDelete(expense.id)}>Delete</Btn>
               </TbodyTd>
             </TbodyTr>
           ))}

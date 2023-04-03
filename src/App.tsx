@@ -12,13 +12,17 @@ function App() {
     { id: 4, description: "Eggs", amount: 10, category: "Food" },
   ]);
 
+  const handleDeleteExpense = (id: number) => {
+    setExpenses(expenses.filter((ex) => ex.id !== id));
+  };
+
   return (
     <>
       <ExpenseForm />
       <br />
       <ExpenseFilter />
       <br />
-      <ExpenseList expenses={expenses} />
+      <ExpenseList expenses={expenses} onDelete={handleDeleteExpense} />
     </>
   );
 }
