@@ -1,5 +1,5 @@
 // import "./App.css";
-import ExpensFilter from "./components/ExpensFilter";
+import ExpenseFilter from "./components/ExpenseFilter";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 
@@ -8,7 +8,7 @@ function App() {
     <>
       <ExpenseForm />
       <br />
-      <ExpensFilter />
+      <ExpenseFilter />
       <br />
       <ExpenseList />
     </>

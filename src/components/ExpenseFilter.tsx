@@ -1,7 +1,7 @@
 import tw from "tailwind-styled-components";
 import categories from "./categoris";
 
-const ExpensFilter = () => {
+const ExpenseFilter = () => {
   return (
     <div>
       <div>
@@ -18,7 +18,7 @@ const ExpensFilter = () => {
   );
 };
 
-export default ExpensFilter;
+export default ExpenseFilter;
 
 export const Label = tw.label`
 block text-gray-700
