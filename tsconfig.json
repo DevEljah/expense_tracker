@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src", //
+    "paths": {
+      "src/*": ["src/*"],
+      "tw.macro": ["node_modules/twin.macro"],
+      "*": ["node_modules/*"]
+    }, //
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
