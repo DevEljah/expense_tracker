@@ -1,29 +1,17 @@
 import { useState } from "react";
 import tw from "tailwind-styled-components";
+import categories from "./categoris";
 
 const ExpenseList = () => {
-  const [data, setData] = useState([
-    { description: "Milk", amount: 1, category: "Food" },
-    { description: "Movie", amount: 4, category: "Entertainment" },
-    { description: "Notebook", amount: 2, category: "Utilties" },
-    { description: "Eggs", amount: 10, category: "Food" },
+  const [expenses, setExpenses] = useState([
+    { id: 1, description: "Milk", amount: 1, category: "Food" },
+    { id: 2, description: "Movie", amount: 4, category: "Entertainment" },
+    { id: 3, description: "Notebook", amount: 2, category: "Utilties" },
+    { id: 4, description: "Eggs", amount: 10, category: "Food" },
   ]);
-
-  const categories = ["Food", "Utilites", "Entertainment"];
 
   return (
     <Div>
-      <div className="mb-4">
-        <Label htmlFor="category">All Catgories</Label>
-        <Select id="category">
-          <option value="none">None</option>
-          {categories.map((category, index) => (
-            <option key={index} value={category}>
-              {category}
-            </option>
-          ))}
-        </Select>
-      </div>
       <Table>
         <thead>
           <Tr>
@@ -34,11 +22,11 @@ const ExpenseList = () => {
           </Tr>
         </thead>
         <tbody>
-          {data.map((item, index) => (
+          {expenses.map((expense, index) => (
             <TbodyTr key={index}>
-              <TbodyTd>{item.description}</TbodyTd>
-              <TbodyTd>${item.amount}</TbodyTd>
-              <TbodyTd>{item.category}</TbodyTd>
+              <TbodyTd>{expense.description}</TbodyTd>
+              <TbodyTd>${expense.amount}</TbodyTd>
+              <TbodyTd>{expense.category}</TbodyTd>
               <TbodyTd>
                 <Btn>Delete</Btn>
               </TbodyTd>
@@ -59,20 +47,6 @@ export default ExpenseList;
 // styling
 export const Div = tw.div`
   w-full
-`;
-
-export const Label = tw.label`
-block text-gray-700
-font-bold
-mb-2
-`;
-export const Select = tw.select`
-block
-w-full
-bg-gray-200
-border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded
-leading-tight
-focus:outline-none focus:bg-white focus:border-gray-500
 `;
 
 export const Table = tw.table`

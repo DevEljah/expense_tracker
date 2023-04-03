@@ -1,7 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
-
-const categories = ["Food", "Utilities", "Entertainment"];
+import categories from "./categoris";
 
 type Inputs = {
   description: string;
@@ -15,6 +14,7 @@ const ExpenseForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
