@@ -1,15 +1,17 @@
 import { useState } from "react";
 import tw from "tailwind-styled-components";
-import categories from "./categoris";
 
-const ExpenseList = () => {
-  const [expenses, setExpenses] = useState([
-    { id: 1, description: "Milk", amount: 1, category: "Food" },
-    { id: 2, description: "Movie", amount: 4, category: "Entertainment" },
-    { id: 3, description: "Notebook", amount: 2, category: "Utilties" },
-    { id: 4, description: "Eggs", amount: 10, category: "Food" },
-  ]);
+interface Expense {
+  id: number;
+  description: string;
+  amount: number;
+  category: string;
+}
+interface Props {
+  expenses: Expense[]; //is an array of objects!
+}
 
+const ExpenseList = ({ expenses }: Props) => {
   return (
     <Div>
       <Table>
