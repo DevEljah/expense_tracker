@@ -26,7 +26,12 @@ const ExpenseList = ({ expenses, onDelete }: Props) => {
           {expenses.map((expense, index) => (
             <TbodyTr key={index}>
               <TbodyTd>{expense.description}</TbodyTd>
-              <TbodyTd>${expense.amount}</TbodyTd>
+              <TbodyTd>
+                $
+                {typeof expense.amount === "number"
+                  ? expense.amount.toFixed(2)
+                  : parseFloat(expense.amount).toFixed(2)}
+              </TbodyTd>
               <TbodyTd>{expense.category}</TbodyTd>
               <TbodyTd>
                 <Btn onClick={() => onDelete(expense.id)}>Delete</Btn>
@@ -37,10 +42,9 @@ const ExpenseList = ({ expenses, onDelete }: Props) => {
             <TbodyTd>Total</TbodyTd>
             <TbodyTd>
               $
-              {expenses.reduce(
-                (acc, expense) => Number(expense.amount) + acc,
-                0
-              )}
+              {expenses
+                .reduce((acc, expense) => Number(expense.amount) + acc, 0)
+                .toFixed(2)}
             </TbodyTd>
           </TbodyTr>
         </tbody>

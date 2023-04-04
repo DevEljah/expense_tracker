@@ -12,10 +12,10 @@ export interface ExpenseProps {
 
 function App() {
   const [expenses, setExpenses] = useState<ExpenseProps[]>([
-    { id: 1, description: "Milk", amount: 1, category: "Food" },
-    { id: 2, description: "Movie", amount: 4, category: "Entertainment" },
-    { id: 3, description: "Notebook", amount: 2, category: "Utilities" },
-    { id: 4, description: "Eggs", amount: 10, category: "Food" },
+    { id: 1, description: "Milk", amount: 2, category: "Food" },
+    { id: 2, description: "Movie", amount: 14, category: "Entertainment" },
+    { id: 3, description: "Wrench", amount: 12, category: "Utilities" },
+    { id: 4, description: "Eggs", amount: 2.5, category: "Food" },
   ]);
 
   const [selectedGategory, setSelectedGategory] = useState("");
