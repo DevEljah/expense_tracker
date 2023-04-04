@@ -12,6 +12,12 @@ function App() {
     { id: 4, description: "Eggs", amount: 10, category: "Food" },
   ]);
 
+  const [selectedGategory, setSelectedGategory] = useState("");
+
+  const visibleExpenses = selectedGategory
+    ? expenses.filter((exp) => exp.category === selectedGategory)
+    : expenses;
+
   const handleDeleteExpense = (id: number) => {
     setExpenses(expenses.filter((ex) => ex.id !== id));
   };
@@ -20,9 +26,11 @@ function App() {
     <>
       <ExpenseForm />
       <br />
-      <ExpenseFilter />
+      <ExpenseFilter
+        onSelectCategory={(category) => setSelectedGategory(category)}
+      />
       <br />
-      <ExpenseList expenses={expenses} onDelete={handleDeleteExpense} />
+      <ExpenseList expenses={visibleExpenses} onDelete={handleDeleteExpense} />
     </>
   );
 }

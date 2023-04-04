@@ -1,14 +1,18 @@
 import tw from "tailwind-styled-components";
 import categories from "./categoris";
 
-const ExpenseFilter = () => {
+interface Props {
+  onSelectCategory: (catagory: string) => void;
+}
+
+const ExpenseFilter = ({ onSelectCategory }: Props) => {
   return (
     <div>
       <div>
-        <Select id="category">
-          <option value="none">All Catgories</option>
-          {categories.map((category, index) => (
-            <option key={index} value={category}>
+        <Select onChange={(event) => onSelectCategory(event.target.value)}>
+          <option value="">All Catgories</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
               {category}
             </option>
           ))}
@@ -20,6 +24,7 @@ const ExpenseFilter = () => {
 
 export default ExpenseFilter;
 
+// style
 export const Label = tw.label`
 block text-gray-700
 font-bold
