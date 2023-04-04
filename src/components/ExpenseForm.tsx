@@ -1,24 +1,24 @@
-import { useForm, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
+import { useForm /*, SubmitHandler */ } from "react-hook-form";
 import categories from "./categoris";
 
-type Inputs = {
-  description: string;
-  amount: number;
-  category: string;
-};
+import { ExpenseProps } from "../App";
 
-const ExpenseForm = () => {
+interface Props {
+  onSubmit: (data: ExpenseProps) => void;
+}
+
+const ExpenseForm = ({ onSubmit }: Props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<ExpenseProps>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  // const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit((data) => onSubmit(data))}>
       <FormGroup>
         <Label htmlFor="description">Description</Label>
         <Input

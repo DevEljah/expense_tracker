@@ -3,9 +3,15 @@ import { useState } from "react";
 import ExpenseFilter from "./components/ExpenseFilter";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
+export interface ExpenseProps {
+  id: number;
+  description: string;
+  amount: number;
+  category: string;
+}
 
 function App() {
-  const [expenses, setExpenses] = useState([
+  const [expenses, setExpenses] = useState<ExpenseProps[]>([
     { id: 1, description: "Milk", amount: 1, category: "Food" },
     { id: 2, description: "Movie", amount: 4, category: "Entertainment" },
     { id: 3, description: "Notebook", amount: 2, category: "Utilities" },
@@ -18,13 +24,18 @@ function App() {
     ? expenses.filter((exp) => exp.category === selectedGategory)
     : expenses;
 
+  const handleAddExpense = (newExpense: Omit<ExpenseProps, "id">) => {
+    const expenseWithId = { ...newExpense, id: expenses.length + 1 };
+    setExpenses([...expenses, expenseWithId]);
+  };
+
   const handleDeleteExpense = (id: number) => {
     setExpenses(expenses.filter((ex) => ex.id !== id));
   };
 
   return (
     <>
-      <ExpenseForm />
+      <ExpenseForm onSubmit={handleAddExpense} />
       <br />
       <ExpenseFilter
         onSelectCategory={(category) => setSelectedGategory(category)}
