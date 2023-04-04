@@ -15,7 +15,7 @@ const ExpenseForm = ({ onSubmit }: Props) => {
     formState: { errors },
   } = useForm<ExpenseProps>();
 
-  // const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  // const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
 
   return (
     <Form onSubmit={handleSubmit((data) => onSubmit(data))}>
